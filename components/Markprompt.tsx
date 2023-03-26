@@ -196,7 +196,7 @@ export const Markprompt: FC<MarkpromptProps> = ({
   }, [loading, answer, didCompleteFirstQuery]);
 
   return (
-    <div className="relative flex h-full flex-col prose prose-dark">
+    <div className="relative flex h-full flex-col prose prose-invert">
       <div className="h-12 border-b border-neutral-900">
         <form onSubmit={submitPrompt}>
           <input
@@ -230,7 +230,7 @@ export const Markprompt: FC<MarkpromptProps> = ({
         {/* Need a container for ReactMarkdown to be able to access
             :last-child and display the caret */}
         <div
-          className={cn('prompt-answer', {
+          className={cn('prompt-answer prose prose-invert prose-sm', {
             'prompt-answer-done': !loading,
             'prompt-answer-loading': loading,
           })}

@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import { Markprompt } from '@/components/Markprompt'
+import { MarkpromptIcon } from '@/components/icons/markprompt'
+import { SourcegraphIcon } from '@/components/icons/sourcegraph'
 
 export default function Home() {
   return (
@@ -12,9 +14,18 @@ export default function Home() {
       </Head>
       <main>
         <div className="w-screen h-screen flex justify-center items-center">
-          <div className="w-[720px] h-[480px] border rounded-xl border-neutral-900 p-8">
-        <Markprompt onDark
-        projectKey="3K9vHrh2Si4DOHTzGWjFxrHJiK4QZJqy" /></div></div>
+          <div className="flex flex-col gap-12">
+            <div className="w-[720px] h-[480px] rounded-xl shadow-2xl bg-neutral-1100 p-8">
+              <Markprompt onDark
+          projectKey="3K9vHrh2Si4DOHTzGWjFxrHJiK4QZJqy" />
+            </div>
+            <div className="flex flex-row gap-8 items-center justify-center">
+              <SourcegraphIcon className="w-10 h-10" />
+              <p className="text-neutral-500 text-2xl">+</p>
+              <MarkpromptIcon className="w-12 h-12" />
+            </div>
+          </div>
+        </div>
       </main>
     </>
   )
