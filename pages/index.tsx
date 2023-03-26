@@ -1,32 +1,46 @@
-import Head from 'next/head'
-import { Markprompt } from '@/components/Markprompt'
-import { MarkpromptIcon } from '@/components/icons/markprompt'
-import { SourcegraphIcon } from '@/components/icons/sourcegraph'
+import Head from 'next/head';
+import { Markprompt } from '@/components/Markprompt';
+import { MarkpromptIcon } from '@/components/icons/markprompt';
 
 export default function Home() {
   return (
     <>
       <Head>
-        <title>Sourcegraph + Markprompt</title>
-        <meta name="description" content="Sourcegraph search powered by Markprompt" />
+        <title>Markprompt Starter Template</title>
+        <meta
+          name="description"
+          content="A starter template featuring the Markprompt React component"
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <div className="w-screen h-screen flex justify-center items-center">
-          <div className="flex flex-col gap-12">
-            <div className="w-[720px] h-[480px] rounded-xl shadow-2xl bg-neutral-1100 p-8">
-              <Markprompt onDark
-          projectKey="3K9vHrh2Si4DOHTzGWjFxrHJiK4QZJqy" />
+        <div className="flex h-screen w-screen items-center justify-center">
+          <div className="flex h-[calc(100vh-60px)] w-full flex-col items-center justify-center gap-12 px-8 pt-8 pb-20">
+            <div className="max-h-[480px] w-full max-w-[720px] flex-grow rounded-xl bg-neutral-1100 p-8 shadow-2xl">
+              {process.env.NEXT_PUBLIC_PROJECT_KEY ? (
+                <Markprompt
+                  onDark
+                  projectKey={process.env.NEXT_PUBLIC_PROJECT_KEY!}
+                />
+              ) : (
+                <p className="px-4 pt-12 text-center text-sm text-neutral-500">
+                  You need to set the{' '}
+                  <code className="font-mono text-sky-700">
+                    NEXT_PUBLIC_PROJECT_KEY
+                  </code>{' '}
+                  environment variable to your project&apos;s public API key.
+                  You can find your key in the Markprompt dashboard, under the
+                  project settings.
+                </p>
+              )}
             </div>
-            <div className="flex flex-row gap-8 items-center justify-center">
-              <SourcegraphIcon className="w-10 h-10" />
-              <p className="text-neutral-500 text-2xl">+</p>
-              <MarkpromptIcon className="w-12 h-12" />
+            <div className="flex flex-none flex-row items-center justify-center gap-8">
+              <MarkpromptIcon className="h-12 w-12" />
             </div>
           </div>
         </div>
       </main>
     </>
-  )
+  );
 }

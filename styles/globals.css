@@ -2,12 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-  @apply bg-neutral-1000
+  @apply bg-neutral-1000;
 }
-
-
 
 .prompt-answer-done .caret {
   @apply hidden;
@@ -39,7 +36,6 @@ body {
   }
 }
 
-
 .prompt-answer-done .caret {
   @apply hidden;
 }
@@ -56,14 +52,12 @@ body {
   @apply rounded border border-neutral-800 bg-neutral-900 !important;
 }
 
-
 .animate-slide-up {
   animation-name: slide-up;
   animation-duration: 1s;
   animation-fill-mode: both;
   transition-timing-function: ease-in-out;
 }
-
 
 @keyframes slide-up {
   from {
