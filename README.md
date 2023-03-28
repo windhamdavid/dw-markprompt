@@ -12,13 +12,21 @@ yarn
 pnpm dev
 ```
 
-Then, rename the `.env.sample` file in the project root to `.env`, and set the value of `NEXT_PUBLIC_PROJECT_KEY` to your project's public API key. This key can be found in your Markprompt dashboard, under project settings.
+Then, rename the `.env.sample` file in the project root to `.env`, and set the value of `NEXT_PUBLIC_PROJECT_KEY` to one of your project's API keys.
 
-Next, publish your project to a public host. A great option is [Vercel](https://vercel.com/new). Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Development
+
+When developping locally, for instance on localhost, use the project's development key, found in the project settings. This key can access the Markprompt API from localhost, without domain whitelisting. For that reason, make sure to **keep this key private**.
+
+### Production
+
+When ready to go live, switch the development key to the production key, also found in the project settings. This key can safely be shared publicly, but will only be allowed to access the Markprompt API when hosted on a whitelisted domain.
+
+Next, publish your project. A great option is [Vercel](https://vercel.com/new). Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 Then, add your host to the list of whitelisted domains in your project settings.
 
-Once deployed, your prompt is now ready to answer questions!
+Once deployed, your prompt is ready to answer questions!
 
 ## Learn More
 
