@@ -11,7 +11,7 @@ import cn from 'classnames';
 import remarkGfm from 'remark-gfm';
 import ReactMarkdown from 'react-markdown';
 
-const MARKPROMPT_COMPLETIONS_URL = 'https://api.markprompt.com/completions';
+const MARKPROMPT_COMPLETIONS_URL = 'https://api.markprompt.com/v1/completions';
 const STREAM_SEPARATOR = '___START_RESPONSE_STREAM___';
 
 type OpenAIModel = OpenAIChatCompletionsModel | OpenAICompletionsModel;
@@ -113,9 +113,7 @@ export const Markprompt: FC<MarkpromptProps> = ({
 
       try {
         const res = await fetch(
-          `${
-            completionsUrl || MARKPROMPT_COMPLETIONS_URL
-          }?projectKey=${projectKey}`,
+          `${completionsUrl || MARKPROMPT_COMPLETIONS_URL}`,
           {
             method: 'POST',
             headers: {
@@ -125,6 +123,7 @@ export const Markprompt: FC<MarkpromptProps> = ({
               prompt,
               model: model || DEFAULT_MODEL,
               iDontKnowMessage,
+              projectKey,
             }),
           },
         );
@@ -196,7 +195,7 @@ export const Markprompt: FC<MarkpromptProps> = ({
   }, [loading, answer, didCompleteFirstQuery]);
 
   return (
-    <div className="relative flex h-full flex-col prose prose-invert">
+    <div className="prose prose-invert relative flex h-full flex-col">
       <div className="h-12 border-b border-neutral-900">
         <form onSubmit={submitPrompt}>
           <input
@@ -230,7 +229,7 @@ export const Markprompt: FC<MarkpromptProps> = ({
         {/* Need a container for ReactMarkdown to be able to access
             :last-child and display the caret */}
         <div
-          className={cn('prompt-answer prose prose-invert prose-sm', {
+          className={cn('prompt-answer prose prose-sm prose-invert', {
             'prompt-answer-done': !loading,
             'prompt-answer-loading': loading,
           })}
